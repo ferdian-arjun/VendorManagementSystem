@@ -14,5 +14,6 @@ namespace VendorManagementSystem.Interfaces
         int Put(TEntity entity);
         int HardDelete(TEntity entity);
         int SoftDelete(TEntity entity);
+        void Dispose();
     }
 }

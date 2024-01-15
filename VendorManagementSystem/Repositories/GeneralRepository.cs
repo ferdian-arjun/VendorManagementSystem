@@ -14,8 +14,13 @@ namespace VendorManagementSystem.Repositories
 
         public GeneralRepository(DbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = _context.Set<TEntity>();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
 
         public TEntity Get(TKey key)
@@ -31,31 +36,67 @@ namespace VendorManagementSystem.Repositories
 
         public int Post(TEntity entity)
         {
-            _dbSet.Add(entity);
-            return _context.SaveChanges();
+            try
+            {
+                _dbSet.Add(entity);
+                return _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public int Put(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            return _context.SaveChanges();
+            try
+            {
+                if (entity is IDateUpdate dateUpdate)
+                {
+                    dateUpdate.updated_at = DateTime.Now;
+                }
+
+                _context.Entry(entity).State = EntityState.Modified;
+                return _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public int SoftDelete(TEntity entity)
         {
-            if (entity is ISoftDeletable softDeletable)
+            try
             {
-                softDeletable.deleted_at = DateTime.Now;
-                _context.Entry(entity).State = EntityState.Modified;
-                _context.SaveChanges();
+                if (entity is ISoftDeletable softDeletable)
+                {
+                    softDeletable.deleted_at = DateTime.Now;
+                    _context.Entry(entity).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
+                return _context.SaveChanges();
             }
-            return _context.SaveChanges();
+            catch (Exception)
+            {
+                return 0;
+            }
+            
         }
 
         public int HardDelete(TEntity entity)
         {
-            _dbSet.Remove(entity);
-            return _context.SaveChanges();
+            try
+            {
+                _dbSet.Remove(entity);
+                return _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+           
         }
+
     }
 }

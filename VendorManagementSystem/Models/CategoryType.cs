@@ -13,7 +13,7 @@ namespace VendorManagementSystem.Models
     using System.Collections.Generic;
     using VendorManagementSystem.Interfaces;
 
-    public partial class CategoryType : ISoftDeletable
+    public partial class CategoryType : ISoftDeletable, IDateUpdate
     {
         public CategoryType()
         {
