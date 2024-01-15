@@ -11,8 +11,9 @@ namespace VendorManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class User
+    using VendorManagementSystem.Interfaces;
+
+    public partial class User : ISoftDeletable
     {
         public User()
         {

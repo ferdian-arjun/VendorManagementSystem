@@ -11,8 +11,9 @@ namespace VendorManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class CompanyProject
+    using VendorManagementSystem.Interfaces;
+
+    public partial class CompanyProject : ISoftDeletable
     {
         public string guid { get; set; }
         public string company_guid { get; set; }

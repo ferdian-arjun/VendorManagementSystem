@@ -11,8 +11,9 @@ namespace VendorManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Company
+    using VendorManagementSystem.Interfaces;
+
+    public partial class Company : ISoftDeletable
     {
         public Company()
         {

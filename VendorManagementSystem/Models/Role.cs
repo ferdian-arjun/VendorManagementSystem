@@ -11,8 +11,9 @@ namespace VendorManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Role
+    using VendorManagementSystem.Interfaces;
+
+    public partial class Role : ISoftDeletable
     {
         public Role()
         {

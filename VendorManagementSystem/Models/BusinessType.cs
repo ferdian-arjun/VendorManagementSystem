@@ -11,8 +11,9 @@ namespace VendorManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class BusinessType
+    using VendorManagementSystem.Interfaces;
+
+    public partial class BusinessType : ISoftDeletable
     {
         public BusinessType()
         {

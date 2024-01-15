@@ -2,6 +2,8 @@ using System;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
+using VendorManagementSystem.Interfaces;
+using VendorManagementSystem.Repositories;
 
 namespace VendorManagementSystem
 {
@@ -47,7 +49,7 @@ namespace VendorManagementSystem
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType(typeof(IGeneralRepository<,>), typeof(GeneralRepository<,>));
         }
     }
 }
