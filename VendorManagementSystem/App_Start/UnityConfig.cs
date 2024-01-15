@@ -50,6 +50,13 @@ namespace VendorManagementSystem
 
             // TODO: Register your type's mappings here.
             container.RegisterType(typeof(IGeneralRepository<,>), typeof(GeneralRepository<,>));
+            container.RegisterType<IUserRepository, UserRepository>();
+            container.RegisterType<IRoleRepository, RoleRepository>();
+            container.RegisterType<IBusinessTypeRepository, BusinessTypeRepository>();
+            container.RegisterType<ICategoryTypeRepository, CategoryTypeRepository>();
+            container.RegisterType<ICompanyRepository, CompanyRepository>();
+            container.RegisterType<ICompanyProjectRepository, CompanyProjectRepository>();
+            container.RegisterType<IProjectRepository, ProjectRepository>();
         }
     }
 }
