@@ -1,9 +1,14 @@
 using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
+using Unity.Injection;
+using VendorManagementSystem.Controllers;
 using VendorManagementSystem.Interfaces;
+using VendorManagementSystem.Models;
 using VendorManagementSystem.Repositories;
+using VendorManagementSystem.Services;
 
 namespace VendorManagementSystem
 {
@@ -49,6 +54,9 @@ namespace VendorManagementSystem
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
+
+            container.RegisterType<DbContext, DB_VMSEntities>();
+
             container.RegisterType(typeof(IGeneralRepository<,>), typeof(GeneralRepository<,>));
             container.RegisterType<IUserRepository, UserRepository>();
             container.RegisterType<IRoleRepository, RoleRepository>();
