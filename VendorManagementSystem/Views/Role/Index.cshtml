@@ -35,11 +35,11 @@
             .Model(
                 model =>
                 {
-                    model.Field(role => role.Guid).Editable(false);
+                    model.Field(role => role.Guid);
                     model.Id(role => role.Guid);
                 })
             .PageSize(20)
     )
-    .Editable(e => e.Mode(GridEditMode.PopUp))
+    .Editable(e => e.Mode(GridEditMode.PopUp).TemplateName("RoleEditor"))
     .ToolBar(t => t.Create())
 )

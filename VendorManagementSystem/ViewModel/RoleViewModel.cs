@@ -8,7 +8,6 @@ namespace VendorManagementSystem.ViewModel
 {
     public class RoleViewModel
     {
-        [ReadOnly(true)]
         public string Guid { get; set; }
         public string Name {get; set; }
     }

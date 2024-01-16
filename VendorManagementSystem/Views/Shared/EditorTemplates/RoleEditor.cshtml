@@ -1,0 +1,16 @@
+﻿@model VendorManagementSystem.ViewModel.RoleViewModel
+
+<div class="k-edit-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="k-edit-field">
+    @Html.EditorFor(model => model.Name)
+</div>
+
+<!-- Hidden Guid field -->
+<div class="k-edit-label" style="display: none;">
+    @Html.LabelFor(model => model.Guid)
+</div>
+<div class="k-edit-field" style="display: none;">
+    @Html.EditorFor(model => model.Guid)
+</div>
