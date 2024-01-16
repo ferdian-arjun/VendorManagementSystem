@@ -40,6 +40,24 @@
                 })
             .PageSize(20)
     )
-    .Editable(e => e.Mode(GridEditMode.PopUp).TemplateName("RoleEditor"))
-    .ToolBar(t => t.Create())
+    .Editable(e => e.Mode(GridEditMode.PopUp)
+        .TemplateName("RoleEditor")
+        .Window(w => w.Title("Edit Role"))
+        
+        )
+    .ToolBar(t => t.Create().Text("Add Role"))
+    .Events(events => events
+            .Edit("onCreate") // Add an event handler for the edit event
+    )
 )
+
+
+<script>
+    function onCreate(e) {
+        // Check if the operation is "create" (adding a new record)
+        if (e.model.isNew()) {
+            // Customize the form title for the "Create" operation
+            e.container.data("kendoWindow").title("Add Role");
+        }
+    }
+</script>
