@@ -57,6 +57,7 @@ namespace VendorManagementSystem
 
             container.RegisterType<DbContext, DB_VMSEntities>();
 
+            //Repositories
             container.RegisterType(typeof(IGeneralRepository<,>), typeof(GeneralRepository<,>));
             container.RegisterType<IUserRepository, UserRepository>();
             container.RegisterType<IRoleRepository, RoleRepository>();
@@ -65,6 +66,13 @@ namespace VendorManagementSystem
             container.RegisterType<ICompanyRepository, CompanyRepository>();
             container.RegisterType<ICompanyProjectRepository, CompanyProjectRepository>();
             container.RegisterType<IProjectRepository, ProjectRepository>();
+
+            //Services
+            container.RegisterType<RoleService>();
+
+
+            //Controllers
+            container.RegisterType<RoleController>();
         }
     }
 }
