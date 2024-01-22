@@ -388,6 +388,7 @@
     <Content Include="Images\Employees-images\8.jpg" />
     <Content Include="Images\Employees-images\9.jpg" />
     <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\icons\upload.png" />
     <Content Include="Images\images\cloud.svg" />
     <Content Include="Images\images\facebook.svg" />
     <Content Include="Images\images\initials.jpg" />
@@ -395,6 +396,8 @@
     <Content Include="Images\images\reddit.svg" />
     <Content Include="Images\images\signin-logo.svg" />
     <Content Include="Images\images\twitter.svg" />
+    <Content Include="Images\Logo\Metrodata.png" />
+    <Content Include="Images\Logo\PHE.png" />
     <Content Include="Images\Products-images\1.png" />
     <Content Include="Images\Products-images\2.png" />
     <Content Include="Images\Products-images\3.png" />
@@ -501,8 +504,8 @@
     <Content Include="Images\Team-members\WOLZA.jpg" />
     <Content Include="Models\ModelVMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelVMS.Context.cs</LastGenOutput>
       <DependentUpon>ModelVMS.edmx</DependentUpon>
+      <LastGenOutput>ModelVMS.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ModelVMS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -582,7 +585,8 @@
     <Content Include="Views\Shared\_SignInLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\RoleEditor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Role\RoleEditor.cshtml" />
+    <Content Include="Views\Role\_RoleGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

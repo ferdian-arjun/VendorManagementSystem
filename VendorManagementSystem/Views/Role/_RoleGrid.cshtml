@@ -1,0 +1,39 @@
+@using Kendo.Mvc.UI
+@using VendorManagementSystem.ViewModel
+
+@model IEnumerable<RoleViewModel>
+
+@(Html.Kendo().Grid<RoleViewModel>()
+    .Name("RoleGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Name);
+        columns.Command(
+            cmd =>
+            {
+                cmd.Edit();
+                cmd.Destroy();
+            }
+        ).Title("Action");
+    })
+    .Scrollable()
+    .Groupable()
+    .Sortable()
+    .Pageable(pageable => pageable
+        .PageSizes(true)
+        .ButtonCount(5))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("Read_Role", "Role"))
+        .Update(update => update.Action("Update_Role", "Role"))
+        .Destroy(destroy => destroy.Action("Delete_Role", "Role"))
+        .Model(
+            model =>
+            {
+                model.Field(role => role.Guid).Editable();
+                model.Id(role => role.Guid);
+            })
+        .PageSize(20)
+    )
+    .Editable(e => e.Mode(GridEditMode.PopUp).TemplateName("Role/RoleEditor"))
+)

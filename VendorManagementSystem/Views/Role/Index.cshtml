@@ -1,63 +1,94 @@
-﻿
-@using Kendo.Mvc.UI
-@using VendorManagementSystem.ViewModel
-
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@(Html.Kendo().Grid<RoleViewModel>()
-    .Name("RoleGrid")
-    .Columns(columns =>
-    {
-        columns.Bound(c => c.Name);
-        columns.Command(
-            cmd =>
-            {
-                cmd.Edit();
-                cmd.Destroy();
-            });
-    })
-    .HtmlAttributes(new { style = "height: 550px;" })
-    .Scrollable()
-    .Groupable()
-    .Sortable()
-    .Pageable(pageable => pageable
-        .Refresh(true)
-        .PageSizes(true)
-        .ButtonCount(5))
-    .DataSource(
-        dataSource => dataSource.Ajax()
-            .Read(read => read.Action("Read_Role", "Role"))
-            .Create(create => create.Action("Create_Role", "Role"))
-            .Update(update => update.Action("Update_Role", "Role"))
-            .Destroy(destroy => destroy.Action("Delete_Role", "Role"))
-            .Model(
-                model =>
-                {
-                    model.Field(role => role.Guid);
-                    model.Id(role => role.Guid);
-                })
-            .PageSize(20)
-    )
-    .Editable(e => e.Mode(GridEditMode.PopUp)
-        .TemplateName("RoleEditor")
-        .Window(w => w.Title("Edit Role"))
-        
-        )
-    .ToolBar(t => t.Create().Text("Add Role"))
-    .Events(events => events
-            .Edit("onCreate") // Add an event handler for the edit event
-    )
-)
-
-
-<script>
-    function onCreate(e) {
-        // Check if the operation is "create" (adding a new record)
-        if (e.model.isNew()) {
-            // Customize the form title for the "Create" operation
-            e.container.data("kendoWindow").title("Add Role");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Data - Material</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
-    }
-</script>
+
+        .container {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            padding: 10px;
+            text-align: left;
+            margin-bottom: 20px;
+            height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+            header img {
+                height: 400%;
+                width: auto;
+                max-width: 100%;
+                margin-right: 10px;
+            }
+
+        .k-button {
+            align-items: center;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .k-grid {
+            height: 550px;
+        }
+
+        .name,
+        th.k-header {
+            background-color: steelblue;
+            color: white;
+        }
+
+        /* Move the Bank Data - Material text below the header */
+        h4 {
+            margin: 10px 0 0; /* Adjust margin as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="~/Images/Logo/PHE.png" alt="PHE Logo">
+            <img src="~/Images/Logo/Metrodata.png" alt="Metrodata Logo">
+        </header>
+
+        <h4>Bank Data - Material</h4>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px;">
+            <div style="display: flex; align-items: center; box-sizing: border-box;">
+                <button id="printButton" class="k-button">
+                    <img src="~/Images/icons/upload.png" alt="print" style="width: 20px; height: 20px; margin-right: 5px; margin-left: 0;" />
+                    Print
+                </button>
+
+                <button id="uploadNewDataButton" class="k-button">
+                    <img src="~/Images/icons/upload.png" alt="upload" style="width: 20px; height: 20px; margin-right: 5px; margin-left: 0;" />
+                    Upload New Data
+                </button>
+            </div>
+        </div>
+
+        @Html.Partial("_RoleGrid")
+    </div>
+
+</body>
+</html>
